@@ -78,7 +78,7 @@ EXERCISE: Define a double function (which multiplies a number by 2), using
 
 You might wonder about the benefit of pointfree style: Doesn't it make the code
 less readable? Yes, sometimes, it does. But sometimes it makes the code more
-readable -- once we are comfortable reading pointfree style. 
+readable -- that is, once we are comfortable reading pointfree style. 
 
 As an example, here is one (non-pointfree) way to define the "plus 2" function,
 which adds 2 to a number: 
