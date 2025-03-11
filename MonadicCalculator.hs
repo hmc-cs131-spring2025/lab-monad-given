@@ -30,7 +30,6 @@ module MonadicCalculator where
   ------------------------------------------------------------------------------
 
   instance Monad CalcStep where
-    return value = CalcStep (\ stack -> (value, stack))
     (CalcStep firstStep) >>= secondFunction = CalcStep f_then_g 
       where f_then_g stack = let (firstValue, firstStack) = firstStep stack
                                  (CalcStep secondStep) = secondFunction firstValue 
@@ -40,7 +39,7 @@ module MonadicCalculator where
     fmap = liftM
 
   instance Applicative CalcStep where
-    pure = return
+    pure value = CalcStep (\ stack -> (value, stack))
     (<*>) = ap   
 
   ------------------------------------------------------------------------------
