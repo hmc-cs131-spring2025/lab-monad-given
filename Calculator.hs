@@ -3,7 +3,7 @@ module Calculator where
   ------------------------------------------------------------------------------
   -- Representation
   --
-  -- The types and values for a calculator 
+  -- The types and values for a calculator
   ------------------------------------------------------------------------------
 
   -- | The calculator computes values of this type
@@ -17,7 +17,7 @@ module Calculator where
   emptyStack = []
 
   ------------------------------------------------------------------------------
-  -- Basic stack operations 
+  -- Basic stack operations
   ------------------------------------------------------------------------------
 
   -- | Push a value onto the stack, resulting in a pair: the value and the new stack.
@@ -31,22 +31,22 @@ module Calculator where
   pop []     = error "Stack underflow"
 
   ------------------------------------------------------------------------------
-  -- Arithmetic operations 
+  -- Arithmetic operations
   ------------------------------------------------------------------------------
 
-  -- | Add two numbers on the stack (note that we could also use pointfree style)                            
+  -- | Add two numbers on the stack (note that we could also use pointfree style)
   plus :: Stack -> (Value, Stack)
   plus stack = binaryOperation (+) stack
 
-  -- | Subtract two numbers on the stack (note that we could also use pointfree style) 
+  -- | Subtract two numbers on the stack (note that we could also use pointfree style)
   minus :: Stack -> (Value, Stack)
   minus stack = binaryOperation (-) stack
 
-  -- | Multiply two numbers on the stack (note that we could also use pointfree style) 
+  -- | Multiply two numbers on the stack (note that we could also use pointfree style)
   times :: Stack -> (Value, Stack)
   times stack = binaryOperation (*) stack
 
-  -- | Divide two numbers on the stack (note that we could also use pointfree style) 
+  -- | Divide two numbers on the stack (note that we could also use pointfree style)
   divide :: Stack -> (Value, Stack)
   divide stack = binaryOperation (/) stack
 
@@ -57,7 +57,7 @@ module Calculator where
   --   operation and the new stack.
   --
   --   Note that our implementation uses existing calculator operations such
-  --   as push and pop, rather than manipulating the stack directly. By using 
+  --   as push and pop, rather than manipulating the stack directly. By using
   --   these higher-level operations, we are free to one day change how we
   --   represent stacks, without having to change the implementation of binaryOperation.
   binaryOperation :: (Value -> Value -> Value) -> Stack -> (Value, Stack)
@@ -66,7 +66,7 @@ module Calculator where
                                 result = f left right
                                 (_, stack3) = push result stack2
                             in (result, stack3)
-                                    
+
   ------------------------------------------------------------------------------
   -- Running a program
   ------------------------------------------------------------------------------

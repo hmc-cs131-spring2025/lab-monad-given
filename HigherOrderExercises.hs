@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
--- Introduction and Overview 
+-- Introduction and Overview
 --------------------------------------------------------------------------------
 
 -- Functional programming is all about functions: defining them, calling them,
--- composing them, passing them to other functions as data. 
+-- composing them, passing them to other functions as data.
 
--- In this part of the lab, we will quickly run through many different ways to 
+-- In this part of the lab, we will quickly run through many different ways to
 -- define and call functions, including:
 
 --   * higher-order functions
@@ -35,7 +35,7 @@
 
 
 --------------------------------------------------------------------------------
--- Pointfree style 
+-- Pointfree style
 --------------------------------------------------------------------------------
 
 -- The following function definition should look familiar. It is a simple
@@ -67,10 +67,10 @@ double = undefined
 
 -- You might wonder about the benefit of pointfree style: Doesn't it make the code
 -- less readable? Yes, sometimes, it does. But sometimes it makes the code more
--- readable -- that is, once we are comfortable reading pointfree style. 
+-- readable -- that is, once we are comfortable reading pointfree style.
 
 -- As an example, here is one (non-pointfree) way to define the "plus 2" function,
--- which adds 2 to a number: 
+-- which adds 2 to a number:
 
 plus2 x = increment (increment x)
 
@@ -93,20 +93,20 @@ plus2' x = (increment . increment) x
 plus2'' = increment . increment
 
 -- EXERCISE: Using the function-composition operator (.) and pointfree style, along
---           with functions we have defined in this file, fill in the definition 
---           for the following function, which should first add one to its 
---           argument, then double the result. You should be able to call 
+--           with functions we have defined in this file, fill in the definition
+--           for the following function, which should first add one to its
+--           argument, then double the result. You should be able to call
 --           incrementDouble 1 and get the result 4.
 
 incrementDouble :: Int -> Int
 incrementDouble = undefined
 
 -- Function composition and pointfree style are nice for when we need to define
--- anonymous functions to pass to other functions, such as map. 
+-- anonymous functions to pass to other functions, such as map.
 
 -- EXERCISE: Using function composition, along with map, show, (3 *), and the list
---           [1, 2, 3], write an expession in GHCI that generates the list 
---           ["3", "6", "9"]. 
+--           [1, 2, 3], write an expession in GHCI that generates the list
+--           ["3", "6", "9"].
 
 -- TODO: your expression here
 
@@ -114,7 +114,7 @@ exp1 = undefined
 
 
 --------------------------------------------------------------------------------
--- Functors 
+-- Functors
 --------------------------------------------------------------------------------
 
 -- Mapping a function over a list is powerful. But what if we want to map a
@@ -123,7 +123,7 @@ exp1 = undefined
 -- A functor generalizes the idea of mapping. Instead of map, we use fmap, like so:
 
 just4 = fmap double (Just 2)
-  
+
 -- This expression gives us (Just 4). It works because Maybe is a functor, i.e., a
 -- datatype that defines the fmap function.
 
@@ -132,9 +132,9 @@ just4 = fmap double (Just 2)
 onlyOdds :: Int -> Maybe Int
 onlyOdds i = if even i then Nothing else Just i
 
--- and using 'fmap' and 'double', define a function 'f' that results in 
+-- and using 'fmap' and 'double', define a function 'f' that results in
 -- Just (2 * n) if n is odd and Nothing if n is even. You can choose
--- whether or not you want to use pointfree style. Remember that you 
+-- whether or not you want to use pointfree style. Remember that you
 -- are working with Maybes, not lists! When you are done, your function
 -- should behave like so:
 
@@ -148,7 +148,7 @@ onlyOdds i = if even i then Nothing else Just i
 --   Just 6
 
 --   ghci> f 4
---   Nothing      
+--   Nothing
 
 f :: Int -> Maybe Int
 f = undefined
@@ -156,12 +156,12 @@ f = undefined
 
 
 -- EXERCISE: Using various combinations of the functions we've defined and
---           discussed in this file, write an expression that transforms the list 
---           [Just 1, Just 2, Just 3] to [Just "2", Just "4", Just "6"]. 
+--           discussed in this file, write an expression that transforms the list
+--           [Just 1, Just 2, Just 3] to [Just "2", Just "4", Just "6"].
 
 --           (Hint: If you get an error that says something like "Non type-variable
 --           argument...", then you're probably trying to map a function f across a
---           list of things that can't be passed to f.) 
+--           list of things that can't be passed to f.)
 
 
 -- TODO: your expression here
@@ -169,9 +169,9 @@ f = undefined
 exp2 = undefined
 
 
--- --------------------------------------------------------------------------------
--- -- Monads 
--- --------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Monads
+--------------------------------------------------------------------------------
 
 -- Let's just dip our toes into monads, specifically the bind operator >>=.
 
@@ -207,7 +207,7 @@ maxNum i = if i < 100 then Just i else Just 100
 --   (>>=) :: Monad m => m a -> (a -> m b) -> m b
 
 -- EXERCISE: Using minNum, maxNum and >>=, define the function numLimits.
---           You can test the boundaries of numLimits with the expressions 
+--           You can test the boundaries of numLimits with the expressions
 --           map numLimits [-1..1] and map numLimits [99..101]
 
 --                   Just n     if 0 <= n <= 100
